@@ -47,8 +47,7 @@ copy_dir() {
   popd >/dev/null || exit
 }
 
-# copy_dir .config $XDG_CONFIG_HOME
-# copy_dir .local $HOME/.local
+copy_dir config $XDG_CONFIG_HOME
 
 copy_file() {
 
@@ -64,5 +63,6 @@ copy_file() {
 }
 
 copy_file ./home "$HOME"
+copy_file ./config "$XDG_CONFIG_HOME"
 
 # copy_file . "$HOME"
