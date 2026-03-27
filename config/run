@@ -55,11 +55,11 @@ copy_file() {
   from=$1
   to=$2
 
-  cfiles=$(find "$from" -maxdepth 1 -type f | grep -v ./config)
+  cfiles=$(find "$from" -maxdepth 1 -mindepth 1 -type f -printf '%f\n')
 
   for cfile in $cfiles; do
     execute rm -f "$to/$cfile"
-    execute cp "$cfile" "$to/$cfile"
+    execute cp "$from/$cfile" "$to/$cfile"
   done
 }
 
