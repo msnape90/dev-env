@@ -74,5 +74,3 @@ copy_file() {
 
 copy_file ./home "$HOME"
 copy_file ./.config "$XDG_CONFIG_HOME"
-
-# copy_file . "$HOME"
