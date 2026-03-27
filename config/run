@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+# this script can be ran in dry mode by specifing filename --dry for testing purposes
+
 XDG_CONFIG_HOME=$HOME/.config
 
 script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
@@ -47,15 +50,22 @@ copy_dir() {
   popd >/dev/null || exit
 }
 
-copy_dir config $XDG_CONFIG_HOME
+copy_dir .config $XDG_CONFIG_HOME
+
+# copy file will copy files from a directory to a new directory while wiping out any any existing files of the same name if they exist
+# use the format copy_file $from $to as seen below with . being the directory this script is run from
+# eg.
+# copy_file ./home "$HOME"
 
 copy_file() {
 
   from=$1
   to=$2
 
+  # finds single files in the $from directory and outputs their base name
   cfiles=$(find "$from" -maxdepth 1 -mindepth 1 -type f -printf '%f\n')
 
+  # copies the files found in the previous step the whichever directory is specified while wiping out any current files with the same name in that location
   for cfile in $cfiles; do
     execute rm -f "$to/$cfile"
     execute cp "$from/$cfile" "$to/$cfile"
@@ -63,6 +73,6 @@ copy_file() {
 }
 
 copy_file ./home "$HOME"
-copy_file ./config "$XDG_CONFIG_HOME"
+copy_file ./.config "$XDG_CONFIG_HOME"
 
 # copy_file . "$HOME"
