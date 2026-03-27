@@ -1,18 +1,27 @@
 #!/usr/bin/env bash
-# in order to run a script it must be made executable
-# using filter you are able to run a specific script
+	
+## in order to run a script it must be made executable
+## using filter you are able to run a specific script
 
-sudoTest() {
+# Ensures the script is not running as sudo or root
 
-  SUDOTEST=$(sudo id -u)
+CURRENTUSER=$(whoami)
 
-  if [ $(id -u) -ne 0 ]; then
-    echo "This script must be run with sudo." >&2
-    exit
-  fi
+if [[ $CURRENTUSER == "root" ]]; then
+  echo "Do not run this script as root/sudo"
+  exit
+fi
 
+# attempts to gain sudo access if not already accquired
+
+sudo -v
+
+# exits the script if sudo access is not granted
+sudo -n true 2>/dev/null || {
+  echo "You must have the ability to run sudo commands to execute this script"
+  exit 1
 }
-sudoTest
+
 
 script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
 filter=""
