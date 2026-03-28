@@ -15,7 +15,7 @@ rmdir /tmp/aptsources >/dev/null 2>&1
 mkdir -p /tmp/aptsources >/dev/null 2>&1
 pushd /tmp/aptsources
 echo "searching for fastest debian apt repo"
-sudo netselect-apt >/dev/null 2>&1 && "fastest deb repo found"
+sudo netselect-apt >/dev/null 2>&1 && echo "fastest deb repo found"
 popd >/dev/null 2>&1
 
 # find the fist occurance (1st line) of a file the conatins string then awk the second column dilimited by space

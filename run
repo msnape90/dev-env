@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-	
+
 ## in order to run a script it must be made executable
 ## using filter you are able to run a specific script
 
@@ -21,7 +21,6 @@ sudo -n true 2>/dev/null || {
   echo "You must have the ability to run sudo commands to execute this script"
   exit 1
 }
-
 
 script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
 filter=""
