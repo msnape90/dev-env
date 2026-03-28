@@ -25,12 +25,9 @@ sudo -n true 2>/dev/null || {
   exit 1
 }
 
-#### APT
+/bin/bash ./cbuildtools
 
-# update and install c build tools
-sudo apt update -y && sudo apt install git curl wget ninja-build \
-  gettext cmake unzip build-essential libtool libtool-bin autoconf \
-  automake pkg-config doxygen -y
+#### APT
 
 # update and install neovim dependencies
 sudo apt update -y && sudo apt install ripgrep fd-find xclip python3-pip \
