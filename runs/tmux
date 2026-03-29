@@ -13,15 +13,16 @@ sudo -n true 2>/dev/null || {
 # base dirs
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SYS_DIR_CONFIG="$HOME/.config"
-SYS_LOCAL_BIN="$HOME/.local/bin"
+SYS_DIR_LOCAL="$HOME/.local"
 SCRIPT_DIR_CONFIG="$SCRIPT_DIR/.config"
 
 # script dirs
 SCRIPT_DIR_TMUX="$SCRIPT_DIR_CONFIG/tmux"
+SYS_DIR_LOCAL_BIN="$SYS_DIR_LOCAL/bin"
 
 # system dirs
-SYS_DIR_TPM="$SYS_DIR_CONFIG/tmux/plugins/tpm"
-SYS_DIR_TMUX="$SYS_DIR_CONFIG/tmux"
+SYS_DIR_TMUX_CONFIG="$SYS_DIR_CONFIG/tmux"
+SYS_DIR_TPM="$SYS_DIR_LOCAL/tmux/plugins/tpm"
 SYS_DIR_SESSIONIZER="$SYS_DIR_CONFIG/tmux-sessionizer"
 # SYS_RESURRECT_DIR="$HOME/.local/share/tmux/resurrect"
 
@@ -30,16 +31,16 @@ SCRIPT_FILE_TMUX_CONF="$SCRIPT_DIR_TMUX/tmux.conf"
 SCRIPT_FILE_RELOAD_TMUX_CONF="$SCRIPT_DIR_TMUX/reload-tmux.conf"
 
 # system file locations
-SYS_FILE_TMUX_CONF="$SYS_DIR_TMUX/tmux.conf"
-SYS_FILE_RELOAD_TMUX_CONF="$SYS_DIR_TMUX/reload-tmux.conf"
+SYS_FILE_TMUX_CONF="$SYS_DIR_TMUX_CONFIG/tmux.conf"
+SYS_FILE_RELOAD_TMUX_CONF="$SYS_DIR_TMUX_CONFIG/reload-tmux.conf"
 SYS_FILE_TPM_INSTALL_PLUGINS="$SYS_DIR_TPM/bin/install_plugins"
-SYS_FILE_SESSIONIZER_BIN="$SYS_LOCAL_BIN/tmux-sessionizer"
+SYS_FILE_SESSIONIZER_BIN="$SYS_DIR_LOCAL_BIN/tmux-sessionizer"
 
 # create any needed dirs
-rm -rf "$SYS_DIR_TMUX"
-mkdir -p "$SYS_DIR_TMUX"
+rm -rf "$SYS_DIR_TMUX_CONFIG"
+mkdir -p "$SYS_DIR_TMUX_CONFIG"
 # mkdir -p "$SYS_RESURRECT_DIR"
-mkdir -p "$SYS_LOCAL_BIN"
+mkdir -p "$SYS_DIR_LOCAL_BIN"
 
 # install required packages
 sudo apt update && sudo apt install fzf tmux git -y
