@@ -113,10 +113,9 @@ gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/prof
 #### BUILD NEOVIM
 
 mkdir -p ~/src &&
-  git clone https://github.com/neovim/neovim.git ~/src/neovim &&
+  git clone -b release-0.11 https://github.com/neovim/neovim ~/src/neovim &&
   cd ~/src/neovim &&
-  git checkout stable
-make CMAKE_BUILD_TYPE=RelWithDebInfo &&
+  make CMAKE_BUILD_TYPE=RelWithDebInfo &&
   sudo make install
 
 #### INSTALL LAZYVIM
