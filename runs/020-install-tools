@@ -28,4 +28,6 @@ sudo apt update && sudo apt install -y\
  jq\
  btop\
  ripgrep\
- eza
+ eza/
+ lazygit/
+
