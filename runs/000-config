@@ -2,8 +2,8 @@
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-pushd $script_dir >> /dev/null
+pushd $script_dir >>/dev/null
 
 /bin/bash ../config/run
 
-popd >> /dev/null
+popd >>/dev/null

@@ -1,4 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Ensures the script is not running as sudo or root
+
+CURRENTUSER=$(whoami)
+
+if [[ $CURRENTUSER == "root" ]]; then
+  echo "Do not run this script as root/sudo"
+  exit
+fi
 
 # attempts to gain sudo access if not already accquired
 

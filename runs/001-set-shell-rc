@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-# in this example NPMBIN is the line to add
-LINE="source $HOME/.config/shell/bash/init.rc"
-
-LINETOADD='export PATH="$PATH:'"$LINE"'"'
-
-grep -qxF "$LINETOADD" "$HOME/.bashrc" || echo "$LINETOADD" >>"$HOME/.bashrc"
