@@ -65,13 +65,13 @@ alias listening='lsof -P -i -n'
 # ============================================================================
 # PACKAGE MANAGEMENT
 # ============================================================================
-alias install='sudo apt install'
-alias search='apt search'
-alias update='sudo apt update'
-alias upgrade='sudo apt update && sudo apt upgrade'
-alias remove='sudo apt remove'
-alias uplist='sudo apt list --upgradable'
-alias autoremove='sudo apt autoremove --purge'
+# alias install='sudo apt install'
+# alias search='apt search'
+# alias update='sudo apt update'
+# alias upgrade='sudo apt update && sudo apt upgrade'
+# alias remove='sudo apt remove'
+# alias uplist='sudo apt list --upgradable'
+# alias autoremove='sudo apt autoremove --purge'
 
 # ============================================================================
 # GIT
@@ -96,7 +96,7 @@ alias gclone='git clone'
 # ============================================================================
 alias v='nvim'
 alias vv='nvim .'
-alias e='micro'
+# alias e='micro'
 alias n='nano'
 
 # Config files
@@ -105,7 +105,7 @@ alias reload='source ~/.zshrc && echo "Reloaded .zshrc"'
 alias bashrc='${EDITOR} ~/.bashrc'
 alias vimrc='${EDITOR} ~/.vimrc'
 alias nvimrc='${EDITOR} ~/.config/nvim/init.lua'
-alias tmuxconf='${EDITOR} ~/.tmux.conf'
+alias tmuxconf='${EDITOR} ~/.config/tmux/tmux.conf'
 
 # ============================================================================
 # DIRECTORY SHORTCUTS
@@ -116,16 +116,16 @@ alias gD='cd ~/Documents'
 alias gv='cd ~/Videos'
 
 # DWM aliases
-alias remake='rm config.h && make && sudo make clean install'
+# alias remake='rm config.h && make && sudo make clean install'
 
 # ============================================================================
 # UTILITIES
 # ============================================================================
-alias x='exit'
-alias c='clear'
-alias h='history'
-alias j='jobs -l'
-alias which='type -a'
+# alias x='exit'
+# alias c='clear'
+# alias h='history'
+# alias j='jobs -l'
+# alias which='type -a'
 alias now='date +"%Y-%m-%d %T"'
 alias week='date +%V'
 
@@ -135,16 +135,16 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Disk usage
-alias biggest='du -h --max-depth=1 | sort -h'
+# alias biggest='du -h --max-depth=1 | sort -h'
 
 # Process management
-alias k9='kill -9'
-alias killall='killall -v'
+# alias k9='kill -9'
+# alias killall='killall -v'
 
 # Archive extraction
-alias untar='tar -xvf'
-alias ungz='tar -xzvf'
-alias unbz2='tar -xjvf'
+# alias untar='tar -xvf'
+# alias ungz='tar -xzvf'
+# alias unbz2='tar -xjvf'
 
 # Misc
 alias ff='fastfetch || neofetch'

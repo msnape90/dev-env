@@ -14,25 +14,25 @@ alias -- -='cd -'
 # LS VARIANTS
 # ============================================================================
 if command -v eza >/dev/null 2>&1; then
-    alias l='eza -ll --color=always --group-directories-first'
-    alias ls='eza -al --header --icons --group-directories-first'
-    alias ll='eza -la --icons --group-directories-first'
-    alias la='eza -la --icons --group-directories-first'
-    alias lt='eza --tree --level=2 --icons'
-    alias lh='eza -la --sort=modified --reverse'
+  alias l='eza -ll --color=always --group-directories-first'
+  alias ls='eza -al --header --icons --group-directories-first'
+  alias ll='eza -la --icons --group-directories-first'
+  alias la='eza -la --icons --group-directories-first'
+  alias lt='eza --tree --level=2 --icons'
+  alias lh='eza -la --sort=modified --reverse'
 elif command -v exa >/dev/null 2>&1; then
-    alias l='exa -l --color=always --group-directories-first'
-    alias ls='exa -a --icons --group-directories-first'
-    alias ll='exa -la --icons --group-directories-first'
-    alias la='exa -la --icons --group-directories-first'
-    alias lt='exa --tree --level=2 --icons'
-    alias lh='exa -la --sort=modified --reverse'
+  alias l='exa -l --color=always --group-directories-first'
+  alias ls='exa -a --icons --group-directories-first'
+  alias ll='exa -la --icons --group-directories-first'
+  alias la='exa -la --icons --group-directories-first'
+  alias lt='exa --tree --level=2 --icons'
+  alias lh='exa -la --sort=modified --reverse'
 else
-    alias l='ls -lF'
-    alias ll='ls -laF'
-    alias la='ls -A'
-    alias lt='tree -L 2'
-    alias lh='ls -lath'
+  alias l='ls -lF'
+  alias ll='ls -laF'
+  alias la='ls -A'
+  alias lt='tree -L 2'
+  alias lh='ls -lath'
 fi
 
 # ============================================================================
@@ -46,13 +46,13 @@ alias mkdir='mkdir -pv'
 # ============================================================================
 # SYSTEM INFO
 # ============================================================================
-alias df='df -h'
-alias du='du -h'
-alias free='free -h'
-alias ps='ps auxf'
-alias top='btop || htop || top'
-alias mem='free -h && echo && ps aux | head -1 && ps aux | sort -rnk 4 | head -5'
-alias cpu='ps aux | head -1 && ps aux | sort -rnk 3 | head -5'
+# alias df='df -h'
+# alias du='du -h'
+# alias free='free -h'
+# alias ps='ps auxf'
+# alias top='btop || htop || top'
+# alias mem='free -h && echo && ps aux | head -1 && ps aux | sort -rnk 4 | head -5'
+# alias cpu='ps aux | head -1 && ps aux | sort -rnk 3 | head -5'
 
 # ============================================================================
 # NETWORK
@@ -64,13 +64,13 @@ alias listening='lsof -P -i -n'
 # ============================================================================
 # PACKAGE MANAGEMENT
 # ============================================================================
-alias install='sudo apt install'
-alias search='apt search'
-alias update='sudo apt update'
-alias upgrade='sudo apt update && sudo apt upgrade'
-alias remove='sudo apt remove'
-alias uplist='sudo apt list --upgradable'
-alias autoremove='sudo apt autoremove --purge'
+# alias install='sudo apt install'
+# alias search='apt search'
+# alias update='sudo apt update'
+# alias upgrade='sudo apt update && sudo apt upgrade'
+# alias remove='sudo apt remove'
+# alias uplist='sudo apt list --upgradable'
+# alias autoremove='sudo apt autoremove --purge'
 
 # ============================================================================
 # GIT
@@ -104,29 +104,29 @@ alias reload='source ~/.bashrc && echo "Reloaded .bashrc"'
 alias zshrc='${EDITOR} ~/.zshrc'
 alias vimrc='${EDITOR} ~/.vimrc'
 alias nvimrc='${EDITOR} ~/.config/nvim/init.vim'
-alias tmuxconf='${EDITOR} ~/.tmux.conf'
+alias tmuxconf='${EDITOR} ~/.config/tmux/tmux.conf'
 
 # ============================================================================
 # DIRECTORY SHORTCUTS
 # ============================================================================
-alias g.='cd ~/.config'
-alias gd='cd ~/Downloads'
-alias gD='cd ~/Documents'
-alias gv='cd ~/Videos'
+# alias g.='cd ~/.config'
+# alias gd='cd ~/Downloads'
+# alias gD='cd ~/Documents'
+# alias gv='cd ~/Videos'
 
 # DWM aliases
-alias gdw='cd ~/.config/suckless/dwm'
-alias gds='cd ~/.config/suckless/slstatus'
-alias remake='rm config.h && make && sudo make clean install'
+# alias gdw='cd ~/.config/suckless/dwm'
+# alias gds='cd ~/.config/suckless/slstatus'
+# alias remake='rm config.h && make && sudo make clean install'
 
 # ============================================================================
 # UTILITIES
 # ============================================================================
-alias x='exit'
-alias c='clear'
-alias h='history'
-alias j='jobs -l'
-alias which='type -a'
+# alias x='exit'
+# alias c='clear'
+# alias h='history'
+# alias j='jobs -l'
+# alias which='type -a'
 alias now='date +"%Y-%m-%d %T"'
 alias week='date +%V'
 
@@ -136,16 +136,16 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
 # Disk usage
-alias biggest='du -h --max-depth=1 | sort -h'
+# alias biggest='du -h --max-depth=1 | sort -h'
 
 # Process management
-alias k9='kill -9'
-alias killall='killall -v'
+# alias k9='kill -9'
+# alias killall='killall -v'
 
 # Archive extraction
-alias untar='tar -xvf'
-alias ungz='tar -xzvf'
-alias unbz2='tar -xjvf'
+# alias untar='tar -xvf'
+# alias ungz='tar -xzvf'
+# alias unbz2='tar -xjvf'
 
 # Misc
 alias weather='curl wttr.in/orlando?u'
@@ -155,4 +155,3 @@ alias hi='notify-send "Hi there!" "Welcome to ${XDG_CURRENT_DESKTOP:-${DESKTOP_S
 # Shell switching
 alias switch='if [ -n "$BASH_VERSION" ]; then exec zsh; elif [ -n "$ZSH_VERSION" ]; then exec bash; fi'
 alias switchperm='if [ -n "$BASH_VERSION" ]; then chsh -s $(which zsh); elif [ -n "$ZSH_VERSION" ]; then chsh -s $(which bash); fi'
-
