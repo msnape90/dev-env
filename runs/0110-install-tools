@@ -19,15 +19,4 @@ sudo -n true 2>/dev/null || {
   exit 1
 }
 
-sudo apt update && sudo apt install -y\
- zsh\
- fzf\
- git\
- curl\
- wget\
- jq\
- btop\
- ripgrep\
- eza/
- lazygit/
-
+sudo apt update && sudo apt install -y zsh fzf git curl wget jq btop ripgrep eza lazygit
