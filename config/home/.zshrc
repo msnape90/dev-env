@@ -153,6 +153,14 @@ if [ -d "$ZSH_CONFIG_DIR" ]; then
             [ -f "$func" ] && source "$func"
         done
     fi
+
+    # Load completion files
+    if [ -d "$ZSH_CONFIG_DIR/completion" ]; then
+        for comp in "$ZSH_CONFIG_DIR/completion"/*(N); do
+            [ -f "$comp" ] && source "$comp"
+        done
+    fi
+
 fi
 
 # ============================================================================
