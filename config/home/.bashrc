@@ -95,16 +95,7 @@ if [ -d "$BASH_CONFIG_DIR" ]; then
     done
   fi
 
-  # Load completion files
-  if [ -d "$BASH_CONFIG_DIR/completion" ]; then
-    for comp in "$BASH_CONFIG_DIR/completion"/*; do
-      if [ -f "$comp" ]; then
-        # Source function files - errors will be shown by bash directly
-        # Don't treat non-zero exit codes as errors
-        source "$comp" || true
-      fi
-    done
-  fi
+ fi
 
 fi
 
