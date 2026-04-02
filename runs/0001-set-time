@@ -19,5 +19,4 @@ sudo -n true 2>/dev/null || {
   exit 1
 }
 
-sudo timedatectl set-timezone "America/Toronto"
 timedatectl set-timezone "America/Toronto"
