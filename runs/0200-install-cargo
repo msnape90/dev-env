@@ -24,5 +24,5 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
 rustup completions bash >"$HOME/.local/share/bash-completion/completions/rustup"
-rustup completions zsh >"$HOME/.zfunc/_rustup"
+rustup completions zsh >"$HOME/.local/share/zsh/completions/_rustup"
 # enable tab completion https://rust-lang.github.io/rustup/installation/index.html#enable-tab-completion-for-bash-fish-zsh-or-powershell
