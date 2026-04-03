@@ -20,3 +20,5 @@ sudo -n true 2>/dev/null || {
 }
 
 timedatectl set-timezone "America/Toronto"
+
+sudo timedatectl set-local-rtc 0 --adjust-system-clock
