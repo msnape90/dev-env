@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 
-mkdir -p "$HOME/.local/share/bash-completion/completions"
-mkdir -p "$HOME/.local/share/zsh/completions"
+DIRS=("$BASH_COMP" "$ZSH_COMP")
+
+for dir in $DIRS; do
+  mkdir -p "$dir"
+done
