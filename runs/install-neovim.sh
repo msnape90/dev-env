@@ -5,25 +5,6 @@
 #
 echo "starting Neovim Install"
 
-# Ensures the script is not running as sudo or root
-
-CURRENTUSER=$(whoami)
-
-if [[ $CURRENTUSER == "root" ]]; then
-  echo "Do not run this script as root/sudo"
-  exit
-fi
-
-# attempts to gain sudo access if not already accquired
-
-sudo -v
-
-# exits the script if sudo access is not granted
-sudo -n true 2>/dev/null || {
-  echo "You must have the ability to run sudo commands to execute this script"
-  exit 1
-}
-
 #### APT
 
 # update and install c build tools

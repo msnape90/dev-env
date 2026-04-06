@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# attempts to gain sudo access if not already accquired
-
-sudo -v
-
-# exits the script if sudo access is not granted
-sudo -n true 2>/dev/null || {
-  echo "You must have the ability to run sudo commands to execute this script"
-  exit 1
-}
-
 # base dirs
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SYS_DIR_CONFIG="$HOME/.config"
