@@ -4,30 +4,24 @@
 ## using filter you are able to run a specific script
 
 # Ensures the script is not running as sudo or root
-
-CURRENTUSER=$(whoami)
-
-if [[ $CURRENTUSER == "root" ]]; then
-  echo "Do not run this script as root/sudo"
-  exit
-fi
-
-# attempts to gain sudo access if not already accquired
-
-sudo -v
-
-# exits the script if sudo access is not granted
-sudo -n true 2>/dev/null || {
-  echo "You must have the ability to run sudo commands to execute this script"
-  exit 1
+usercheck() {
+  CURRENTUSER=$(whoami)
+  if [[ $CURRENTUSER == "root" ]]; then
+    echo "Do not run this script as root/sudo"
+    exit
+  fi
+  # attempts to gain sudo access if not already accquired
+  sudo -v
+  # exits the script if sudo access is not granted
+  sudo -n true 2>/dev/null || {
+    echo "You must have the ability to run sudo commands to execute this script"
+    exit 1
+  }
 }
 
 script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
 filter=""
 dry="0"
-
-# source the .env file prior to running any functions
-source "$script_dir/.env"
 
 cd $script_dir
 scripts=$(find runs -maxdepth 1 -mindepth 1 -executable -type f | sort)
@@ -66,5 +60,8 @@ for script in $scripts; do
     continue
   fi
   log "running script: $script"
+  usercheck
+  #sources the .env file before execution of any script
+  source "$script_dir/.env"
   execute ./$script
 done
