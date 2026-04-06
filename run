@@ -26,9 +26,11 @@ script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
 filter=""
 dry="0"
 
+# source the .env file prior to running any functions
+source "$script_dir/.env"
+
 cd $script_dir
 scripts=$(find runs -maxdepth 1 -mindepth 1 -executable -type f | sort)
-source "$script_dir/.env"
 
 while [[ $# > 0 ]]; do
   if [[ "$1" == "--dry" ]]; then

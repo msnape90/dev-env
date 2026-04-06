@@ -3,6 +3,7 @@
 This script will primarily focus on creating a development/devops enviroment focusing on the installation of tools, languages, and settings geared around terminal based developer productivity.
 
 - creates a distro based reproducible development enviroment when run
+- the common install and configurations paths used by the script are defined in the .env file
 - installs to $HOME/.local/ with the attempt to keep the home path a clean as possible
 - shell updates such as aliases, hotkeys, commands, and path updates will go in ~/.config/shell
 - the shell will be zsh based but updates will also be available in a bash shell
