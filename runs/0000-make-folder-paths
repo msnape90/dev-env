@@ -2,6 +2,8 @@
 
 DIRS=("$BASH_COMP" "$ZSH_COMP")
 
-for dir in $DIRS; do
+echo "creating directories:"
+for dir in "${DIRS[@]}"; do
+  echo "$dir"
   mkdir -p "$dir"
 done
