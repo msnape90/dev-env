@@ -50,7 +50,7 @@ copy_dir() {
   popd >/dev/null || exit
 }
 
-copy_dir .config $XDG_CONFIG_HOME
+copy_dir .config $CONFIG
 
 # copy file will copy files from a directory to a new directory while wiping out any any existing files of the same name if they exist
 # use the format copy_file $from $to as seen below with . being the directory this script is run from
