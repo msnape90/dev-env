@@ -2,7 +2,10 @@
 
 # this script can be ran in dry mode by specifing filename --dry for testing purposes
 
-XDG_CONFIG_HOME=$HOME/.config
+if [[ ! -d "$CONFIG" ]]; then
+  echo '$CONFIG var must be set to a valid dir. ensure .env is set and this script is only run from the main run'
+  exit 1
+fi
 
 script_dir="$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)"
 dry="0"
