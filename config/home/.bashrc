@@ -55,7 +55,16 @@ add_paths_from_file() {
   var_expand_file() {
     file=$1
     while IFS= read -r raw; do
-      expanded=$(envsubst <<<"$raw")
+      # remove everything from first '#' to end of line
+      line=${raw%%#*}
+
+      # optionally trim trailing spaces (if you care)
+      line=${line%%[[:space:]]}
+
+      # skip empty/fully-comment lines
+      [[ -z $line ]] && continue
+
+      expanded=$(envsubst <<<"$line")
       echo "$expanded"
     done <"$file"
   }
