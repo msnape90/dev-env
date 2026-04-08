@@ -99,7 +99,7 @@ fi
 # LOAD MODULAR CONFIGURATIONS
 # ============================================================================
 
-BASH_CONFIG_DIR="$HOME/.config/bash"
+BASH_CONFIG_DIR="$HOME/.config/shell/bash"
 
 # Load all bash configuration files
 if [ -d "$BASH_CONFIG_DIR" ]; then

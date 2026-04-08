@@ -172,7 +172,7 @@ fi
 # LOAD MODULAR CONFIGURATIONS
 # ============================================================================
 
-ZSH_CONFIG_DIR="$HOME/.config/zsh"
+ZSH_CONFIG_DIR="$HOME/.config/shell/zsh"
 
 # Load all zsh configuration files
 if [ -d "$ZSH_CONFIG_DIR" ]; then
