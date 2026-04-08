@@ -79,7 +79,7 @@ var_expand_file() {
       # skip empty/fully-comment lines
       [[ -z $line ]] && continue
 
-      expanded=$(envsubst <<<"$line")
+      # expanded=$(envsubst <<<"$line")
       echo "$line"
     done <"$file"
   }
