@@ -63,7 +63,7 @@ add_paths_from_file() {
     dirs=$1
     typeset -U path
     for dir in ${dirs[@]}; do
-      [[ -d "$dir" && path=("$dir" $path) ]]
+      [[ -d "$dir" && path=($dir $path) ]]
     done
   }
 
@@ -85,6 +85,7 @@ var_expand_file() {
   }
 
   PATHS_TO_ADD=$(var_expand_file "$file")
+  # echo $PATHS_TO_ADD
   add_paths "$PATHS_TO_ADD"
 
 }
