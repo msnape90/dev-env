@@ -1,1 +1,2 @@
-$HOME/projects
+# do not use ~ however existing variables like $HOME will be expanded
+$HOME/.local/bin
