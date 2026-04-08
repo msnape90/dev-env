@@ -67,6 +67,7 @@ add_paths_from_file() {
 
 add_paths_from_file "$HOME/.config/shell/common/paths"
 unset -f add_paths_from_file
+unset -f add_paths
 
 # Default editors
 export EDITOR=$(command -v nvim || command -v vim || command -v micro || echo nano)
