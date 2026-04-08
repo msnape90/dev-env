@@ -41,6 +41,33 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Path configuration
 export PATH="$HOME/scripts:$HOME/.local/bin:/usr/local/go/bin:$HOME/.cargo/bin:$PATH"
 
+add_paths_from_file() {
+  file=$1
+
+  # if dir is a valid path and isnt already in PATH then add it to path
+  add_paths() {
+    dirs=$1
+    for dir in ${dirs[@]}; do
+      [[ -d "$dir" && ! "$PATH" =~ (^|:)$dir(:|$) ]] && export PATH="$PATH:$dir"
+    done
+  }
+
+  var_expand_file() {
+    file=$1
+    while IFS= read -r raw; do
+      expanded=$(envsubst <<<"$raw")
+      echo "$expanded"
+    done <"$file"
+  }
+
+  PATHS_TO_ADD=$(var_expand_file "$file")
+  add_paths "$PATHS_TO_ADD"
+
+}
+
+add_paths_from_file "$HOME/.config/shell/common/paths"
+unset -f add_paths_from_file
+
 # Default editors
 export EDITOR=$(command -v nvim || command -v vim || command -v micro || echo nano)
 export VISUAL="$EDITOR"
