@@ -80,7 +80,7 @@ var_expand_file() {
       [[ -z $line ]] && continue
 
       expanded=$(envsubst <<<"$line")
-      echo "$expanded"
+      echo "$line"
     done <"$file"
   }
 
