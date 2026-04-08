@@ -71,7 +71,7 @@ var_expand_file() {
     file=$1
     while IFS= read -r raw; do
       # remove everything from first '#' to end of line
-      line=${raw%%#*}
+      line=${raw%%\#*}
 
       # optionally trim trailing spaces (if you care)
       line=${line%%[[:space:]]}
@@ -85,8 +85,7 @@ var_expand_file() {
   }
 
   PATHS_TO_ADD=$(var_expand_file "$file")
-  echo $PATHS_TO_ADD
-  # add_paths "$PATHS_TO_ADD"
+  add_paths "$PATHS_TO_ADD"
 
 }
 
