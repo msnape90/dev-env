@@ -54,47 +54,45 @@ SAVEHIST=20000
 # Path configuration
 typeset -U path  # Keep unique entries in path
 path=($HOME/scripts $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $path)
-add_paths_from_file() {
+
+add_to_paths_from_file() {
+  setopt localoptions extendedglob
+
   local file=$1
+  [[ -z $file || ! -r $file ]] && return 1
 
-  # if dir is a valid path and isnt already in PATH then add it to path
-  add_paths() {
-    # In zsh, treat the argument list as words, not arrays
-    local dir
-    for dir in "$@"; do
-      # use the path array for membership checks instead of regex on $PATH
-      if [[ -d $dir && ${path[(Ie)$dir]} -eq 0 ]]; then
-        # prepend to both $PATH and $path to keep them in sync
-        path=("$dir" $path)
-      fi
-    done
-  }
+  local raw cleaned item dir
+  local -a lines expanded
 
-  var_expand_file() {
-    local file=$1
-    local raw line expanded
-    while IFS= read -r raw; do
-      # remove everything from first '#' to end of line
-      line=${raw%%\#*}
+  # Read file and strip inline # comments
+  while IFS= read -r raw; do
+    cleaned=${raw%%\#*}                                   # strip comment
+    cleaned=${cleaned%$'\r'}                             # drop Windows CR if present
+    cleaned=${${cleaned##[[:space:]]##}%%[[:space:]]##}  # trim leading/trailing whitespace
+    [[ -n $cleaned ]] || continue
+    lines+=("$cleaned")
+  done < "$file"
 
-      # trim trailing whitespace (zsh supports [:space:] like bash)
-      line=${line%%[[:space:]]}
+  # Expand each line (variables, command substitutions, arithmetic)
+  for item in "${lines[@]}"; do
+    expanded+=("${(e)item}")                             # single‑word shell expansion
+  done
 
-      # skip empty/fully-comment lines
-      [[ -z $line ]] && continue
+  # Add each expanded entry to PATH if it’s a new, existing directory
+  for dir in "${expanded[@]}"; do
+    #print -r -- "DIR => [$dir]"
+    [[ -d $dir ]] || continue                            # only existing directories
+    [[ ":$PATH:" == *":$dir:"* ]] && continue            # skip if already in PATH
+    #echo "adding $dir to path"
+   PATH+=":$dir"
+  done
 
-      expanded=$(envsubst <<<"$line")
-      echo "$expanded"
-    done <"$file"
-  }
-
-  # capture expansions as a single string; splitting happens in add_paths via "$@"
-  local PATHS_TO_ADD
-  PATHS_TO_ADD=$(var_expand_file "$file")
-  add_paths $=PATHS_TO_ADD
+  export PATH
 }
 
 add_paths_from_file "$HOME/.config/shell/common/paths"
+
+unset -f add_to_paths_from_file
 
 # clean up function namespace
 unset -f add_paths_from_file
