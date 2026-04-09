@@ -53,9 +53,9 @@ SAVEHIST=20000
 
 # Path configuration
 typeset -U path  # Keep unique entries in path
-path=($HOME/scripts $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $path)
+# path=($HOME/scripts $HOME/.local/bin /usr/local/go/bin $HOME/.cargo/bin $path)
 
-add_to_paths_from_file() {
+add_paths_from_file() {
   setopt localoptions extendedglob
 
   local file=$1
@@ -94,50 +94,6 @@ add_paths_from_file "$HOME/.config/shell/common/paths"
 
 unset -f add_to_paths_from_file
 
-# clean up function namespace
-unset -f add_paths_from_file
-unset -f add_paths
-unset -f var_expand_file
-# add_paths_from_file() {
-#   file=$1
-#
-#   # if dir is a valid path and isnt already in PATH then add it to path
-#   add_paths() {
-#     dirs=$1
-#     typeset -U path
-#     for dir in ${dirs[@]}; do
-#       [[ -d "$dir" && path=($dir $path) ]]
-#     done
-#   }
-#
-# var_expand_file() {
-#     file=$1
-#     while IFS= read -r raw; do
-#       # remove everything from first '#' to end of line
-#       line=${raw%%\#*}
-#
-#       # optionally trim trailing spaces (if you care)
-#       line=${line%%[[:space:]]}
-#
-#       # skip empty/fully-comment lines
-#       [[ -z $line ]] && continue
-#
-#       # expanded=$(envsubst <<<"$line")
-#       echo "$line"
-#     done <"$file"
-#   }
-#
-#   PATHS_TO_ADD=$(var_expand_file "$file")
-#   # echo $PATHS_TO_ADD
-#   add_paths "$PATHS_TO_ADD"
-#
-# }
-#
-# add_paths_from_file "$HOME/.config/shell/common/paths"
-#
-# unset -f add_paths
-# unset -f add_paths_from_file
-#
 # Default editors
 if command -v nvim >/dev/null 2>&1; then
     export EDITOR=nvim
