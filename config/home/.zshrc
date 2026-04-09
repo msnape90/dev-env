@@ -92,7 +92,7 @@ add_paths_from_file() {
 
 add_paths_from_file "$HOME/.config/shell/common/paths"
 
-unset -f add_to_paths_from_file
+unset -f add_paths_from_file
 
 # Default editors
 if command -v nvim >/dev/null 2>&1; then
