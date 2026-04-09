@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
 timedatectl set-timezone "America/Toronto"
+timedatectl set-ntp true
+sudo timedatectl set-local-rtc 0 # --adjust-system-clock
 
-sudo timedatectl set-local-rtc 0 --adjust-system-clock
+while [ "$(timedatectl show -p SystemClockSynchronized --value)" != "yes" ]; do
+  sleep 2
+done
