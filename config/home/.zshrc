@@ -133,7 +133,7 @@ fi
 # ============================================================================
 
 # Sets the path for newly installed apps to place their zsh auto completions
-typeset -gaU fpath=($fpath $HOME/.local/share/zsh/completions)
+typeset -gaU fpath=($HOME/.local/share/zsh/completions $fpath)
 
 # Initialize completion system
 autoload -Uz compinit

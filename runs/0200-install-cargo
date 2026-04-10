@@ -4,8 +4,7 @@
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 . "$HOME/.cargo/env"
 
-rustup completions bash >"$HOME/.local/share/bash-completion/completions/rustup"
-rustup completions zsh >"$HOME/.local/share/zsh/completions/_rustup"
-rm --force "$HOME/.zcompdump"
-zsh -c "source .zshrc"
+rustup completions bash >"$BASH_COMP/rustup"
+rustup completions zsh >"$ZSH_COMP/_rustup"
+rm -f "$HOME/.zcompdump*" && exec zsh
 # enable tab completion https://rust-lang.github.io/rustup/installation/index.html#enable-tab-completion-for-bash-fish-zsh-or-powershell
