@@ -1,4 +1,7 @@
 # do not use ~ however existing variables like $HOME will be expanded
+/usr/sbin
+/usr/bin
+/usr/local/bin
 $HOME/.local/bin
 $HOME/.cargo/bin
 /usr/local/go/bin
