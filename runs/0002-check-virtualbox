@@ -1,0 +1,29 @@
+#!/usr/env/bin bash
+
+echo "checking for commands"
+command -v systemd-detect-virt >/dev/null 2>&1 || exit
+command -v dmidecode >/dev/null 2>&1 || exit
+
+echo "checking virtualizations"
+systemvirt="$(systemd-detect-virt)"
+echo "virtualization type=$systemvirt"
+
+if [[ $systemvirt != "oracle"]]; then
+  exit
+fi
+
+product_line=$(sudo dmidecode --type system | grep "Product")
+
+if [[ $product_line == *VirtualBox* ]]; then
+  is_virtualbox = true
+fi
+
+cdroms=$(lsblk | grep rom | awk '{ print $1 }')
+
+for cd in "${cdroms[@]}"; do
+  sudo mount "dev/$cd" /mnt || continue
+done
+
+echo ""
+echo ""
+echo ""
