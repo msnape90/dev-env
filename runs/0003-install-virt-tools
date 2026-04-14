@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+set -x
+
+## check if vbox client is already installed if so exit script
+command -v VBoxClient >/dev/null 2>&1 && exit
+
+## check for detections commands if they dont exist exit script
+command -v systemd-detect-virt >/dev/null 2>&1 || exit
+command -v dmidecode >/dev/null 2>&1 || exit
+
+echo "checking virutalization"
+
+is_virtualbox=false
+
+systemvirt="$(systemd-detect-virt)"
+
+echo "virutualization type=$systemvirt"
+
+if [[ $systemvirt != "oracle" ]]; then
+  exit
+fi
+
+product_line=$(sudo dmidecode --type system | grep "Product")
+
+if [[ $product_line == *VirtualBox* ]]; then
+  is_virtualbox=true
+fi
+
+$is_virtualbox || exit
+
+ISONAME="VBoxGuestAdditions_$VBOX_VERSION.iso"
+WGETADDRESS="https://download.virtualbox.org/virtualbox/$VBOX_VERSION/$ISONAME"
+PROGRAM="VBoxLinuxAdditions.run"
+MOUNTDIR="/mnt/vbox_guest_add"
+TEMPDIR="/tmp/vboxguestcd"
+
+# Pre-cleanup
+sudo umount $MOUNTDIR >/dev/null 2>&1
+
+sudo rm -rf $TEMPDIR >/dev/null 2>&1
+sudo rm -rf $MOUNTDIR >/dev/null 2>&1
+
+sudo mkdir -p $MOUNTDIR
+mkdir -p $TEMPDIR
+
+# execution
+wget $WGETADDRESS -O "$TEMPDIR/$ISONAME"
+sudo mount "$TEMPDIR/$ISONAME" $MOUNTDIR
+sudo /bin/bash "$MOUNTDIR/$PROGRAM"
+sudo umount $MOUNTDIR
+
+#post-cleanup
+sudo rm -rf $TEMPDIR >/dev/null 2>&1
+sudo rm -rf $MOUNTDIR >/dev/null 2>&1
