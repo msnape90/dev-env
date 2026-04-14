@@ -1,6 +1,9 @@
 #!/usr/env/bin bash
 set -x
 
+## check if vbox client is already installed
+command -v VBoxClient >/dev/null 2>&1 || exit
+
 echo "checking for commands"
 command -v systemd-detect-virt >/dev/null 2>&1 || exit
 echo "checking for commands"
