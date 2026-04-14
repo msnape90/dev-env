@@ -5,6 +5,7 @@ set -x
 command -v VBoxClient >/dev/null 2>&1 && exit
 
 ## check for detections commands if they dont exist exit script
+PATH="$PATH:/usr/sbin"
 command -v systemd-detect-virt >/dev/null 2>&1 || exit
 command -v dmidecode >/dev/null 2>&1 || exit
 
