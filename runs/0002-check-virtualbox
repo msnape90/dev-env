@@ -1,4 +1,4 @@
-#!/usr/env/bin bash
+#!/usr/bin/env bash
 set -x
 
 ## check if vbox client is already installed
