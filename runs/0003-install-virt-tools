@@ -28,6 +28,11 @@ fi
 
 $is_virtualbox || exit
 
+# install dependencies
+#
+#
+sudo apt install gcc dkms make bzip2 linux-headers-$(uname -r) -y
+
 ISONAME="VBoxGuestAdditions_$VBOX_VERSION.iso"
 WGETADDRESS="https://download.virtualbox.org/virtualbox/$VBOX_VERSION/$ISONAME"
 PROGRAM="VBoxLinuxAdditions.run"
