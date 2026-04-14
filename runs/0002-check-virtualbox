@@ -18,12 +18,23 @@ if [[ $product_line == *VirtualBox* ]]; then
   is_virtualbox = true
 fi
 
+echo "gathering list of disks"
+
 cdroms=$(lsblk | grep rom | awk '{ print $1 }')
 
-for cd in "${cdroms[@]}"; do
-  sudo mount "dev/$cd" /mnt || continue
-done
+for cd in $cdroms; do
+  echo "attempting to mount $cd"
+  sudo mount "/dev/$cd" /mnt >/dev/null 2>&1 || continue
+  echo "mount successful searching for VBoxLinuxAdditions.run /dev/$cd"
 
-echo ""
-echo ""
-echo ""
+  cd_search=$(find /mnt -type f -name "VBoxLinuxAdditions.run")
+
+  if [[ $cd_search != *VBoxLinuxAdditions.run ]]; then
+    sudo umount /mnt && continue
+  fi
+  echo "Found, installing required dependancies"
+  sudo apt install gcc make bzip2 linux-headers-$(uname -r) -y
+  sudo /bin/bash /mnt/VBoxLinuxAdditions.run
+  sudo umount /mnt && echo "unmounted $cd"
+
+done
