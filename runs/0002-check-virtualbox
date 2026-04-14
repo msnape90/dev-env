@@ -1,25 +1,27 @@
 #!/usr/env/bin bash
 set -x
 
-echo "checking for commands" 
-command -v systemd-detect-virt >/dev/null 2>&1 || exit 
-echo "checking for commands" 
-command -v dmidecode >/dev/null 2>&1 || exit 
- 
-echo "checking virutalization" 
+echo "checking for commands"
+command -v systemd-detect-virt >/dev/null 2>&1 || exit
+echo "checking for commands"
+command -v dmidecode >/dev/null 2>&1 || exit
+
+echo "checking virutalization"
 
 is_virtualbox=false
- 
-systemvirt="$(systemd-detect-virt)" 
-echo "virutualization type=$systemvirt" 
-if [[ $systemvirt != "oracle" ]]; then 
-  exit 
-fi 
- 
-product_line=$(sudo dmidecode --type system | grep "Product") 
- 
-if [[ $product_line == *VirtualBox* ]]; then 
-  is_virtualbox=true 
+
+systemvirt="$(systemd-detect-virt)"
+
+echo "virutualization type=$systemvirt"
+
+if [[ $systemvirt != "oracle" ]]; then
+  exit
+fi
+
+product_line=$(sudo dmidecode --type system | grep "Product")
+
+if [[ $product_line == *VirtualBox* ]]; then
+  is_virtualbox=true
 fi
 
 $is_virtualbox || exit
