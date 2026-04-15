@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -x
+
+[[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]] || exit
+
+sudo apt install gnome-tweaks gnome-tweaks-extra gtk2-engines-murrine sassc
+
+#these are just the install folders consider where to put them
+# like the icon these tela-circle-black-light
+
+git clone https://github.com/vinceliuice/Graphite-gtk-theme $THEME_DIR
+git clone https://github.com/vinceliuice/Tela-circle-icon-theme $THEME_DIR
+
+cd into icon dir and run ./install.sh -c black grey
+# gtk-engine-murrine on Arch Linux
+# gtk-murrine-engine on Fedora
+# gtk2-engine-murrine on openSUSE
+# gtk2-engines-murrine on Debian, Ubuntu, etc.
+
+PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
+
+gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/" font "'JetBrainsMonoNL Nerd Font Mono 13'"
+gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/" cell-width-scale 1.05
+# gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+# gsettings set org.gnome.desktop.interface accent-color 'slate'

@@ -89,6 +89,8 @@ source "$HOME/.bashrc"
 PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/" font "'JetBrainsMonoNL Nerd Font Mono 13'"
 gsettings set "org.gnome.Terminal.Legacy.Profile:/org/gnome/terminal/legacy/profiles:/:$PROFILE_ID/" cell-width-scale 1.05
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface accent-color 'slate'
 
 #### BUILD NEOVIM
 
