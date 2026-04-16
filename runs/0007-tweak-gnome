@@ -3,23 +3,35 @@ set -x
 
 [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]] || exit
 
-sudo apt install gnome-tweaks gnome-tweaks-extra gtk2-engines-murrine sassc #gnome-shell-extensions
+sudo apt install libglib2.0-dev-bin gnome-tweaks gnome-themes-extra gtk2-engines-murrine sassc gnome-shell-extensions
 
 GRAPHITE="Graphite-gtk-theme"
 TELA_ICONS="Tela-circle-icon-theme"
 
+## dl theming
 git clone "https://github.com/vinceliuice/$GRAPHITE" "/tmp/$GRAPHITE"
 git clone "https://github.com/vinceliuice/$TELA_ICONS" "/tmp/$TELA_ICONS"
 
-pushd "/tmp/$GRAPHITE" || exit
-echo $(pwd)
-
-popd || return
-
+## execute themeing
+### icons
 pushd "/tmp/$TELA_ICONS" || exit
-echo $(pwd)
+
+./install.sh -c black grey
 
 popd || return
+rm -rf "/tmp/$TELA_ICONS"
+
+### graphite
+pushd "/tmp/$GRAPHITE" || exit
+
+./wallpaper/install-wallpapers.sh --theme standard --system default debian
+
+./install.sh
+./install.sh -l
+sudo ./install.sh -d
+
+popd || return
+rm -rf "/tmp/$GRAPHITE"
 
 # change gnome settings
 PROFILE_ID=$(gsettings get org.gnome.Terminal.ProfilesList default | tr -d \')
