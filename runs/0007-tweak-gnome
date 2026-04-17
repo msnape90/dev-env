@@ -3,7 +3,7 @@ set -x
 
 [[ "$XDG_CURRENT_DESKTOP" == "GNOME" ]] || exit
 
-sudo apt install libglib2.0-dev-bin gnome-tweaks gnome-themes-extra gtk2-engines-murrine sassc gnome-shell-extensions
+sudo apt update && sudo apt install libglib2.0-dev-bin gnome-tweaks gnome-themes-extra gtk2-engines-murrine sassc gnome-shell-extensions
 
 GRAPHITE="Graphite-gtk-theme"
 TELA_ICONS="Tela-circle-icon-theme"
